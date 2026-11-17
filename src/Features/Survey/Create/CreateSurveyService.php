@@ -131,13 +131,13 @@ final class CreateSurveyService
         }
 
         if (!\is_int($estimatedTime) && !(\is_string($estimatedTime) && ctype_digit($estimatedTime))) {
-            throw new RuntimeException('Estimasi waktu (estimated_time) harus berupa angka lebih dari 0', 422);
+            throw new RuntimeException('Estimasi waktu harus berupa bilangan bulat antara 1 sampai 180 menit', 422);
         }
 
         $estimatedTime = (int) $estimatedTime;
 
-        if ($estimatedTime <= 0) {
-            throw new RuntimeException('Estimasi waktu (estimated_time) harus berupa angka lebih dari 0', 422);
+        if ($estimatedTime < 1 || $estimatedTime > 180) {
+            throw new RuntimeException('Estimasi waktu harus berupa bilangan bulat antara 1 sampai 180 menit', 422);
         }
 
         return $estimatedTime;
